@@ -120,7 +120,8 @@ Before starting, ensure you have:
   - Verify installation by running: `terraform --version`
 - **AWS CLI (Optional):** Version 2.x.x
   - Verify installation by running: `aws --version`
-- **Lab Files:** [Download Here](#)
+- **Lab Files:**
+  - Clone this repo locally `git clone https://github.com/xjoin-ai/labs.git`
 - **AWS Credentials:**
   - You will need and IAM role or user with the following permissions:
   ```
@@ -138,38 +139,73 @@ Before starting, ensure you have:
 
 ### Confirm Configuration
 
-Verify your Terraform and AWS CLI configurations are correct.
-```
-terraform --version
-aws --version
-```
+1. **Navigate to the Terraform Directory:**
+   In your terminal, change to the `terraform` folder:
 
-Setup AWS Credentials
-```
-export AWS_ACCESS_KEY_ID="ABC123"
-export AWS_SECRET_KEY_ID="ABC123"
-export AWS_REGION="us-west-2"
-```
+       cd labs/terraform
 
-Setup Terraform
-```
-terraform init
-terraform plan
-```
+2. **Verify Installations:**
+
+       terraform --version
+       aws --version
+
+3. **Set Up AWS Credentials:**
+   Export your AWS credentials as environment variables:
+
+       export AWS_ACCESS_KEY_ID="YOUR_ACCESS_KEY"
+       export AWS_SECRET_ACCESS_KEY="YOUR_SECRET_KEY"
+       export AWS_REGION="us-west-2"
+
+   *Tip:* Consider using a credentials file or a secrets manager for production environments.
+
+4. **Initialize and Plan Terraform:**
+   Run the following commands to initialize and preview the changes:
+
+       terraform init
+       terraform plan
 
 ### Create Resources
 
-```
-terraform apply
-```
+Once you are satisfied with the plan, create the resources in your AWS account:
+
+    terraform apply
+
+Follow the prompt to confirm the action.
 
 ### Testing
 
-Terraform should output a Lambda function URL that you can test with.
+After a successful deployment, Terraform will output a Lambda Function URL. Open this URL in your browser or use `curl` to verify that your web application is running.
 
 ### Destroy Resources
 
-Clean up your AWS resources after completing the lab by running:
+When you are finished with the lab, clean up your resources to avoid unnecessary costs:
 
-```bash
-terraform destroy
+    terraform destroy
+
+## Troubleshooting & FAQs
+
+**Common Issues:**
+- **Authentication Errors:** Ensure your AWS credentials are correctly set and have the required permissions.
+- **Terraform Errors:** Verify you are in the correct directory and your Terraform version matches the requirements.
+- **Resource Not Found:** Double-check that your AWS region is correctly specified.
+
+**FAQs:**
+- **Q:** What if the Lambda URL isn’t working?
+  **A:** Check the AWS Lambda console for errors and review CloudWatch logs.
+- **Q:** How can I customize the web app?
+  **A:** Modify the Flask application code in the repository and update the Terraform configuration accordingly.
+
+## What's Next
+
+After completing this lab, consider exploring:
+- **Advanced Terraform Modules:** Learn how to modularize and reuse your Terraform code.
+- **CI/CD Integration:** Automate deployments using AWS CodePipeline or GitHub Actions.
+- **Monitoring & Logging:** Dive deeper into AWS CloudWatch for monitoring and troubleshooting.
+- **Other AWS Services:** Experiment with additional services like AWS API Gateway, DynamoDB, or S3 for a more comprehensive web app.
+
+## Additional Resources
+
+- [Terraform Documentation](https://www.terraform.io/docs)
+- [AWS Lambda Documentation](https://docs.aws.amazon.com/lambda/)
+- [AWS IAM Best Practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)
+- [Flask Documentation](https://flask.palletsprojects.com/)
